@@ -15,29 +15,23 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by andre on 28/11/2017.
+ * Created by jaryd on 9/4/2019.
  */
 
 public class DocumentScannerPackage implements ReactPackage {
 
+  @Override
+  public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
+    return Arrays.<ViewManager>asList(
+      new DocumentScannerViewManager()
+    );
+  }
 
-    @Override
-    public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-        return Arrays.<NativeModule>asList(
-            new DocumentScannerModule(reactContext)
-        );
-    }
-
-    @Override
-    public List<Class<? extends JavaScriptModule>> createJSModules() {
-        return Collections.emptyList();
-    }
-
-    @Override
-    public List<ViewManager> createViewManagers(ReactApplicationContext reactContext) {
-        return Arrays.<ViewManager>asList(
-                new DocumentScannerViewManager()
-        );
-    }
+  @Override
+  public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
+    List<NativeModule> modules = new ArrayList<>();
+    modules.add(new DocumentScannerModule(reactContext));
+    return modules;
+  }
 
 }
